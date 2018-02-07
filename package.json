@@ -1,0 +1,34 @@
+{
+	"name": "esm-bare-to-browser",
+	"version": "1.0.0",
+	"description": "",
+	"main": "esm-bare-to-browser.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://archive.voodoowarez.com/esm-bare-to-browser"
+	},
+	"keywords": [],
+	"author": "rektide de la faye",
+	"license": "X11",
+	"module": "esm-bare-to-browser.js",
+	"dependencies": {
+		"babel-core": "^6.26.0",
+		"babel-plugin-5to6-commonjs-to-import": "0.0.6",
+		"babel-plugin-5to6-no-strict": "0.0.4",
+		"babel-plugin-module-resolver": "^3.0.0",
+		"get-stdin": "^5.0.1",
+		"pn": "^1.1.0"
+	},
+	"devDependencies": {
+		"@std/esm": "^0.20.0"
+	},
+	"@std/esm": {
+		"esm": "js",
+		"cjs": {
+			"namedExports": true
+		}
+	}
+}
