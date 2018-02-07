@@ -15,12 +15,10 @@
 	"license": "X11",
 	"module": "esm-bare-to-browser.js",
 	"dependencies": {
-		"babel-core": "^6.26.0",
-		"babel-plugin-5to6-commonjs-to-import": "0.0.6",
-		"babel-plugin-5to6-no-strict": "0.0.4",
-		"babel-plugin-module-resolver": "^3.0.0",
+		"5to6-codemod": "^1.7.1",
 		"get-stdin": "^5.0.1",
-		"pn": "^1.1.0"
+		"jscodeshift": "^0.4.0",
+		"url-polyfill": "^1.0.11"
 	},
 	"devDependencies": {
 		"@std/esm": "^0.20.0"

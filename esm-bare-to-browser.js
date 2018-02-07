@@ -1,8 +1,14 @@
-import babel from "babel-core"
-import options from "./options.js"
+import f2sExports from "5to6-codemod/transforms/exports.js"
+import f2sCjs from "5to6-codemod/transforms/cjs.js"
+import f2sNamedExportGeneration from "5to6-codemod/transforms/named-export-generation.js"
+import f2sNoStrict from "5to6-codemod/transforms/no-strict.js"
+import f2sUtil from "5to6-codemod/utils/main.js"
 
-export default function( code, filename){
-	options.filename= filename
-	//options.filenameRelative= filename // unclear whether above covers this sort of thing?
-	return babel.transform( code, options).code
+export function transform( file, api, options){
+	file.source= f2sExports( file, api, options)
+	file.source= f2sCjs( file, api, options)
+	file.source= f2sNamedExportGeneration( file, api, options)
+	file.source= f2sNoStrict( file, api, options)
+	return file.source
 }
+export default transform
