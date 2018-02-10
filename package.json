@@ -1,11 +1,12 @@
 {
 	"name": "esm-bare-to-browser",
-	"version": "1.0.0",
-	"description": "",
+	"version": "1.0.1",
+	"description": "Bake what-have-you to static, browser-compatible ESM for your site.",
 	"main": "esm-bare-to-browser.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
+	"bin": "./index.js",
 	"repository": {
 		"type": "git",
 		"url": "https://archive.voodoowarez.com/esm-bare-to-browser"
