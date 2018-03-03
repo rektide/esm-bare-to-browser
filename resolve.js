@@ -18,6 +18,12 @@ function arrayitize( opt, def){
 
 export async function resolve( file, api, options){
 	options= options|| {}
+	if( options.defaultDir=== undefined){
+		options.defaultDir= "/"
+	}
+	if( options.defaultDir=== "false"|| options.defaultDir=== false){
+		delete options.defaultDir
+	}
 	// find all imports
 	var
 	  j= api.jscodeshift,

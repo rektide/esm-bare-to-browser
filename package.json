@@ -6,18 +6,17 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"bin": "./index.js",
+	"bin": "./esm-bare-to-browser",
 	"repository": {
 		"type": "git",
 		"url": "https://archive.voodoowarez.com/esm-bare-to-browser"
 	},
 	"keywords": [],
 	"author": "rektide de la faye",
-	"license": "X11",
-	"module": "esm-bare-to-browser.js",
+	"license": "MIT",
 	"dependencies": {
-		"@std/esm": "^0.20.0",
 		"5to6-codemod": "^1.7.1",
+		"@std/esm": "^0.24.0",
 		"jscodeshift-async": "^0.4.0",
 		"resolve": "^1.5.0",
 		"url-polyfill": "^1.0.11"
