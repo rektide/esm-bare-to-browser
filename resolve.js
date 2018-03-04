@@ -19,7 +19,7 @@ function arrayitize( opt, def){
 export async function resolve( file, api, options){
 	options= options|| {}
 	if( options.defaultDir=== undefined){
-		options.defaultDir= "/"
+		options.defaultDir= true
 	}
 	if( options.defaultDir=== "false"|| options.defaultDir=== false){
 		delete options.defaultDir
@@ -50,7 +50,11 @@ export async function resolve( file, api, options){
 			new url( val)
 			resolves.push( false) // signal to not transform this url
 		}catch(ex){
-			resolves.push( __resolve( val, resolveOptions))
+			var resolved= __resolve( val, resolveOptions)
+			if( options.defaultDir){
+				resolved= resolved.catch( _=> options.defaultDir=== true? val: options.defaultDir.defaultDir+ val)
+			}
+			resolves.push( resolved)
 		}
 	})
 	// replace imports with resolved values
@@ -61,11 +65,11 @@ export async function resolve( file, api, options){
 		var
 		  node= nodePath.node,
 		  replacement= resolved.shift()
-		console.log({replacement})
 		if( replacement.startsWith( fileDir)){
 			// use relative paths for children of cwd
 			replacement= "." + replacement.slice( fileDir.length)
 		}
+		//console.log({replacement, orig: nodePath.node.source.value, path: file.path, fileDir})
 		if( replacement!== false){
 			node.source.value= replacement
 		}
