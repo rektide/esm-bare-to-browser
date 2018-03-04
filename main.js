@@ -1,4 +1,5 @@
 import { sep, dirname} from "path"
+import PackageDepends from "package-depends"
 
 process.on("unhandledRejection", console.error)
 process.on("uncaughtException", console.error)
@@ -9,6 +10,13 @@ export async function main(){
 	  transformPath= dirname( stripped)+ sep+ "esm-bare-to-browser.js"
 	// the jscodeshift bin is unflexible. this is the low cost hack of it.
 	process.argv.push("-t", transformPath, "--no-babel")
+
+	// find non-dev packages
+	var pkgs= new PackageDepends({ trim: true, modulesDirs: ["browser_modules", "node_modules"]})
+	for await( var pkg of pkgs.depends()){
+		process.argv.push( pkg)
+	}
+
 	// import() because it will immediately invoke
 	// if this were statically imported just requiring main would run
 	// downside: no way to do a re-run

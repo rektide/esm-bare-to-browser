@@ -16,4 +16,4 @@ popd  > /dev/null
 
 export NODE_OPTIONS="-r $SCRIPT_PATH/node_modules/@std/esm $NODE_OPTIONS"
 export ESM_OPTIONS="$(jq -c '.["@std/esm"]' $SCRIPT_PATH/package.json)"
-node -r $SCRIPT_PATH/node_modules/@std/esm $SCRIPT_PATH/main-run.js $*
+node --harmony_async_iteration -r $SCRIPT_PATH/node_modules/@std/esm $SCRIPT_PATH/main-run.js $*
