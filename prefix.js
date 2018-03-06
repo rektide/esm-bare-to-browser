@@ -9,7 +9,7 @@ export default function( file, api, options){
 	  imports= root.find( j.ImportDeclaration),
 	  cwd= options.cwd|| process.env["EB2B_PREFIX_CWD"]||process.cwd(), // didn't see any way for runner to pass in options
 	  remove= options.remove|| process.env["EB2B_PREFIX_REMOVE"]|| "/node_modules",
-	  replace= options.replace|| process.env["EB2B_PREFIX_REPLAC"]|| "/lib",
+	  replace= options.replace|| process.env["EB2B_PREFIX_REPLACE"]|| "/lib",
 	  replaced= imports.replaceWith( nodePath=> {
 		var
 		  node= nodePath.node,

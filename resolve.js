@@ -32,8 +32,8 @@ export async function resolve( file, api, options){
 	// resolve all imports
 	var
 	  resolveOptions= {
-		basedir: options.resolveBasedir|| dirname( file.path),
-		moduleDirectory: arrayitize( options.resolveModuleDirectory, "node_modules"),
+		basedir: options.resolveBasedir|| process.env["EB2B_RESOLVE_BASEDIR"]|| dirname( file.path),
+		moduleDirectory: arrayitize( options.resolveModuleDirectory, process.env["EB2B_RESOLVE_MODULE_DIRECTORY"]|| "node_modules"),
 		extensions: arrayitize( options.resolveExtensions, [".mjs", ".js"]),
 		preserveSymlinks: options.preserveSymlinks!== undefined? options.preserveSymlinks: true,
 		packageFilter: function(pkg){
