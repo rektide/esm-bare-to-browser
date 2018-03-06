@@ -1,6 +1,6 @@
 {
 	"name": "esm-bare-to-browser",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Bake what-have-you to static, browser-compatible ESM for your site.",
 	"main": "esm-bare-to-browser.js",
 	"scripts": {
