@@ -6,12 +6,13 @@ import f2sUtil from "5to6-codemod/utils/main.js"
 import eb2bResolve from "./resolve.js"
 import eb2bPrefix from "./prefix.js"
 
-export function transform( file, api, options){
+export async function transform( file, api, options){
 	file.source= f2sExports( file, api, options)
 	file.source= f2sCjs( file, api, options)
 	file.source= f2sNamedExportGeneration( file, api, options)
 	file.source= f2sNoStrict( file, api, options)
-	file.source= eb2bResolve( file, api, options)
+	file.source= await eb2bResolve( file, api, options)
+	file.source= eb2bPrefix( file, api, options)
 	return file.source
 }
 export default transform
