@@ -61,6 +61,7 @@ export async function resolve( file, api, options){
 	var
 	  resolved= await Promise.all( resolves),
 	  fileDir= dirname( pathResolve( file.path)),
+	  cwd= options.cwd|| process.cwd(),
 	  replaced= imports.replaceWith( nodePath=> {
 		var
 		  node= nodePath.node,
@@ -69,7 +70,10 @@ export async function resolve( file, api, options){
 			// use relative paths for children of cwd
 			replacement= "." + replacement.slice( fileDir.length)
 		}
-		//console.log({replacement, orig: nodePath.node.source.value, path: file.path, fileDir})
+		// maybe move this into prefix?
+		if( replacement.startsWith( cwd)){
+			replacement= replacement.substring( cwd.length)
+		}
 		if( replacement!== false){
 			node.source.value= replacement
 		}
