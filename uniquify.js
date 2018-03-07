@@ -8,9 +8,18 @@ export default function( file, api, options){
 	var
 	  j= api.jscodeshift,
 	  root= j( file.source),
+	  exports= {}
+	// read top level declarations
+	j
+		.find( j.ExportNamedDeclaration)
+		.find( j.VariableDeclaration)
+		.find( j.ObjectPattern)
+		.find( j.Identifier)
+		.filter( id=> id.name=== "key")
+		.forEach( id=> exports[ id.node.name]= id)
 	  // read all export values
 	  // rename any declarations using an export name
-	  // rename any references to the export
-	  renamed2= root
+	// rename any references to the export
+	var renamed2= root
 	return renamed2.toSource()
 }
