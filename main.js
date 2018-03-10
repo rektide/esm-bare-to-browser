@@ -11,10 +11,13 @@ export async function main(){
 	// the jscodeshift bin is unflexible. this is the low cost hack of it.
 	process.argv.push("-t", transformPath, "--no-babel")
 
-	// find non-dev packages
-	var pkgs= new PackageDepends({ trim: true, modulesDirs: ["browser_modules", "node_modules"]})
-	for await( var pkg of pkgs.depends()){
-		process.argv.push( pkg)
+	// no location specified
+	if( process.argv.length<= 2){
+		// find non-dev packages
+		var pkgs= new PackageDepends({ trim: true, modulesDirs: ["browser_modules", "node_modules"]})
+		for await( var pkg of pkgs.depends()){
+			process.argv.push( pkg)
+		}
 	}
 
 	// import() because it will immediately invoke
