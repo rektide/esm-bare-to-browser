@@ -14,6 +14,4 @@ cd `dirname ${SCRIPT_PATH}` > /dev/null
 SCRIPT_PATH=`pwd`;
 popd  > /dev/null
 
-export NODE_OPTIONS="-r $SCRIPT_PATH/node_modules/@std/esm $NODE_OPTIONS"
-export ESM_OPTIONS="$(jq -c '.["@std/esm"]' $SCRIPT_PATH/package.json)"
-node --harmony_async_iteration -r $SCRIPT_PATH/node_modules/@std/esm $SCRIPT_PATH/main-run.js $*
+node $SCRIPT_PATH/main.js $*

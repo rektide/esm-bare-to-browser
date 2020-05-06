@@ -1,5 +1,7 @@
+#!/usr/bin/env node
 import { sep, dirname} from "path"
 import PackageDepends from "package-depends"
+import isMain from "is-main"
 
 process.on("unhandledRejection", console.error)
 process.on("uncaughtException", console.error)
@@ -26,3 +28,7 @@ export async function main(){
 	return import( "jscodeshift-async/bin/jscodeshift.sh") // file ending is a lie
 }
 export default main
+
+if( isMain(import.meta.url)){
+	main()
+}
